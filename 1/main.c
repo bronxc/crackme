@@ -12,13 +12,13 @@ int main() {
 	srand(1337);
 	const unsigned char table[8] = {173,135,131,121,110,119,187,143};
 	int i;
-    for (i = 0; i < sizeof input; i++) {
-        input[i] ^= table[i % 8];
-    }
-	bool accepted = sizeof input == sizeof pass;
-    for (i = 0; accepted && i < sizeof input; i++) {
-        accepted &= input[i] == pass[i];
-    }
+	for (i = 0; i < sizeof input; i++) {
+		input[i] ^= table[i % 8];
+	}
+	int accepted = sizeof input == sizeof pass ? 1 : 0;
+	for (i = 0; accepted && i < sizeof input; i++) {
+		accepted &= input[i] == pass[i];
+	}
 	if (accepted)
 		fputs("Correct!\n", stdout);
 	else
